@@ -12,7 +12,7 @@ class NewestBooksCubit extends Cubit<NewestBooksState> {
     emit(NewestBooksLoading());
     var result = await fetchNewestBooksUseCase.call();
     result.fold(
-      (failure) => emit(NewestBooksFailure(failure.errorMessage)),
+      (failure) => emit(NewestBooksFailure(failure.errmsg)),
       (books) => emit(NewestBooksSuccess(books)),
     );
   }

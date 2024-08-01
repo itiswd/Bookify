@@ -37,20 +37,20 @@ class Bookify extends StatelessWidget {
     );
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => FeaturedBooksCubit(
+        BlocProvider(create: (context) {
+          return FeaturedBooksCubit(
             FetchFeaturedBooksUseCase(
               getIt.get<HomeRepoImp>(),
             ),
-          ),
-        ),
-        BlocProvider(
-          create: (context) => NewestBooksCubit(
+          )..fetchFeaturedBooks();
+        }),
+        BlocProvider(create: (context) {
+          return NewestBooksCubit(
             FetchNewestBooksUseCase(
               getIt.get<HomeRepoImp>(),
             ),
-          ),
-        ),
+          );
+        })
       ],
       child: MaterialApp.router(
         routerConfig: AppRouters.router,

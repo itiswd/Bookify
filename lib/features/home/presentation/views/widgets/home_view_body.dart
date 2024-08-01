@@ -1,9 +1,9 @@
 import 'package:bookify/core/utils/styles.dart';
 import 'package:bookify/features/home/presentation/views/widgets/custom_appbar.dart';
+import 'package:bookify/features/home/presentation/views/widgets/featured_listview_bloc_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'bestseller_listview.dart';
-import 'list_view.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -17,7 +17,7 @@ class HomeViewBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomAppBar(),
-              FeaturedListView(),
+              FeaturedListViewBlocBuilder(),
               Padding(
                 padding: EdgeInsets.only(
                   top: 12.0,
