@@ -1,4 +1,6 @@
+import 'package:bookify/consatants.dart';
 import 'package:bookify/features/home/domain/entities/book_entity.dart';
+import 'package:hive_flutter/adapters.dart';
 
 abstract class HomeLocalDataSource {
   List<BookEntity> fetchFeaturedBooks();
@@ -8,13 +10,13 @@ abstract class HomeLocalDataSource {
 class HomeLocalDataSourceImp extends HomeLocalDataSource {
   @override
   List<BookEntity> fetchFeaturedBooks() {
-    // TODO: implement fetchFeaturedBooks
-    throw UnimplementedError();
+    var box = Hive.box<BookEntity>(kFeaturedBooks);
+    return box.values.toList();
   }
 
   @override
   List<BookEntity> fetchNewestBooks() {
-    // TODO: implement fetchNewestBooks
-    throw UnimplementedError();
+    var box = Hive.box<BookEntity>(kNewestBooks);
+    return box.values.toList();
   }
 }
