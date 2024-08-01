@@ -7,10 +7,11 @@ import 'package:hive_flutter/adapters.dart';
 import 'consatants.dart';
 
 void main() async {
-  runApp(const Bookify());
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
-  await Hive.openBox(kFeaturedBooks);
+  await Hive.openBox<BookEntity>(kFeaturedBooks);
+  await Hive.openBox<BookEntity>(kNewestBooks);
+  runApp(const Bookify());
 }
 
 class Bookify extends StatelessWidget {
