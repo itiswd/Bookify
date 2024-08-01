@@ -2,7 +2,7 @@ import 'package:bookify/features/home/domain/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failures.dart';
-import '../entities/entity.dart';
+import '../entities/book_entity.dart';
 
 abstract class UseCase<Type, Param> {
   Future<Either<Failure, Type>> call([Param param]);

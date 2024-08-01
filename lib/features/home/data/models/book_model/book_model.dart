@@ -1,9 +1,10 @@
+import 'package:bookify/features/home/domain/entities/book_entity.dart';
+
 import 'access_info.dart';
 import 'sale_info.dart';
-import 'search_info.dart';
 import 'volume_info.dart';
 
-class BookModel {
+class BookModel extends BookEntity {
   String? kind;
   String? id;
   String? etag;
@@ -11,7 +12,6 @@ class BookModel {
   VolumeInfo? volumeInfo;
   SaleInfo? saleInfo;
   AccessInfo? accessInfo;
-  SearchInfo? searchInfo;
 
   BookModel({
     this.kind,
@@ -21,8 +21,14 @@ class BookModel {
     this.volumeInfo,
     this.saleInfo,
     this.accessInfo,
-    this.searchInfo,
-  });
+  }) : super(
+          bookId: id!,
+          image: volumeInfo?.imageLinks?.thumbnail ?? '',
+          authorName: volumeInfo?.authors?.first ?? 'Not identfied',
+          price: 0.0,
+          rating: volumeInfo!.averageRating,
+          title: volumeInfo.title!,
+        );
 
   factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
         kind: json['kind'] as String?,
@@ -38,9 +44,6 @@ class BookModel {
         accessInfo: json['accessInfo'] == null
             ? null
             : AccessInfo.fromJson(json['accessInfo'] as Map<String, dynamic>),
-        searchInfo: json['searchInfo'] == null
-            ? null
-            : SearchInfo.fromJson(json['searchInfo'] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toJson() => {
@@ -51,6 +54,5 @@ class BookModel {
         'volumeInfo': volumeInfo?.toJson(),
         'saleInfo': saleInfo?.toJson(),
         'accessInfo': accessInfo?.toJson(),
-        'searchInfo': searchInfo?.toJson(),
       };
 }
